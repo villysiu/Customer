@@ -1,46 +1,51 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Customer {
-     private static String[] customers = new String[5];
+     private String[] customers = new String[5];
 
-    private static void inputCustomerData(){
+    public Customer() {
+
+    }
+
+    public void inputCustomerData(){
         Scanner sc = new Scanner(System.in);
-        String firstName = "";
-        String lastName = "";
+        Pattern pattern = Pattern.compile("\\w+");
+
 
         for(int i=0; i<5; i++){
-            System.out.print("Enter first name for customer "+ (i+1) + ":");
-            firstName = sc.nextLine();
-            while(firstName.equals("")){
-                System.out.print("First name cannot be empty. Please try again.\n");
+            String firstName = "";
+            String lastName = "";
+            do{
                 System.out.print("Enter first name for customer "+ (i+1) + ":");
-                firstName = sc.nextLine();
-            }
+                firstName = sc.nextLine().trim();
+                if(firstName.isEmpty()){
+                    System.out.println("First name cannot be empty. Please try again.");
+                }
+            } while(firstName.isEmpty());
 
 
-            System.out.print("Enter last name for customer "+ (i+1) + ":");
-            lastName = sc.nextLine();
-            while(lastName.equals("")){
-                System.out.print("Last name cannot be empty. Please try again.\n");
+            do{
                 System.out.print("Enter last name for customer "+ (i+1) + ":");
-                lastName = sc.nextLine();
-            }
+                lastName = sc.nextLine().trim();
 
-            customers[i] = firstName + " " + lastName;
+                if(lastName.isEmpty()){
+                    System.out.println("Last name cannot be empty. Please try again.");
+                }
+            } while(lastName.isEmpty());
+
+            customers[i] = firstName + " " + lastName; // James Smith
         }
-
         sc.close();
 
     }
-    private static void displayCustomerData(){
+    public void displayCustomerData(){
         System.out.println("Customer List:");
         for(String customer : customers){
             System.out.println(customer);
         }
     }
 
-    public static void main(String[] args){
-        inputCustomerData();
-        displayCustomerData();
-    }
+
 }
