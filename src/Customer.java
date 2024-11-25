@@ -1,22 +1,17 @@
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Customer {
      private String[] customers = new String[5];
-
+    String firstName = "";
+    String lastName = "";
     public Customer() {
 
     }
 
     public void inputCustomerData(){
         Scanner sc = new Scanner(System.in);
-        Pattern pattern = Pattern.compile("\\w+");
-
-
         for(int i=0; i<5; i++){
-            String firstName = "";
-            String lastName = "";
+
             do{
                 System.out.print("Enter first name for customer "+ (i+1) + ":");
                 firstName = sc.nextLine().trim();
